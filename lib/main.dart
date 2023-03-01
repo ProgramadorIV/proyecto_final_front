@@ -67,11 +67,17 @@ class MyApp extends StatelessWidget {
       title: 'Authentication Demo',
       theme: ThemeData(
         primarySwatch: Colors.teal,
+        useMaterial3: true
       ),
       home: BlocBuilder<AuthenticationBloc, AuthenticationState>(
         builder: (context, state) {
           GlobalContext.ctx = context;
-          return HomePage();
+          if (state is AuthenticationAuthenticated) {
+            return HomePage(
+              user: state.user,
+            );
+          }
+          return LoginPage();
         },
       ),
     );

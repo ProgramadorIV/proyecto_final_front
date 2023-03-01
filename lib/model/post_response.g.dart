@@ -15,7 +15,8 @@ PostResponse _$PostResponseFromJson(Map<String, dynamic> json) => PostResponse()
   ..totalElements = json['totalElements'] as int
   ..size = json['size'] as int
   ..first = json['first'] as bool
-  ..numberOfElements = json['numberOfElements'] as int;
+  ..numberOfElements = json['numberOfElements'] as int
+  ..number = json['number'] as int;
 
 Map<String, dynamic> _$PostResponseToJson(PostResponse instance) =>
     <String, dynamic>{
@@ -26,4 +27,5 @@ Map<String, dynamic> _$PostResponseToJson(PostResponse instance) =>
       'size': instance.size,
       'first': instance.first,
       'numberOfElements': instance.numberOfElements,
+      'number': instance.number,
     };

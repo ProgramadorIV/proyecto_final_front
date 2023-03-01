@@ -1,12 +1,89 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:proyecto_final_front/blocs/authentication/authentication.dart';
-import 'package:proyecto_final_front/config/locator.dart';
+import 'package:proyecto_final_front/model/models.dart';
 import 'package:proyecto_final_front/pages/login_page.dart';
-import 'package:proyecto_final_front/services/services.dart';
-import '../model/models.dart';
+import 'package:proyecto_final_front/routes/routes.dart';
+import 'package:proyecto_final_front/widgets/bottom_navigator.dart';
 
-class HomePage extends StatelessWidget {
+
+class HomePage extends StatefulWidget{
+  final User user;
+
+  const HomePage({super.key, required this.user});
+
+  @override
+  State<StatefulWidget> createState() {
+    return _HomePageState();
+  } 
+}
+class _HomePageState extends State<HomePage>{
+
+  int page = 0;
+  BottomNavigator? bottomNavigator;
+  
+  @override
+  void initState() {
+    bottomNavigator = BottomNavigator(targetView: (index){
+      setState(() {
+        page = index;
+      });
+    });
+    super.initState();
+  }
+
+
+  @override
+  Widget build(BuildContext context) {
+    final authBloc = BlocProvider.of<AuthenticationBloc>(context);
+    return Scaffold(
+      appBar: AppBar(
+        actions: [
+           IconButton(onPressed: (){
+            authBloc.add(UserLoggedOut());
+            }, 
+            icon: Icon(Icons.logout),
+            color: Colors.white,
+            hoverColor: Colors.red,
+            padding: EdgeInsets.all(10),
+            )
+        ],
+        /*actions: [
+          IconButton(
+            onPressed: () async{
+              if(logged){
+                authBloc.add(UserLoggedOut());
+                _userLoggedOut();
+              }
+              else{
+                Navigator.push(context, MaterialPageRoute(builder: (context) => LoginPage()));
+              }
+            },
+            icon: Icon(logged ? Icons.logout : Icons.login),
+            color: Colors.white,
+            hoverColor: Colors.teal,
+            padding: EdgeInsets.all(10),
+          ),
+        ],*/
+        backgroundColor: Colors.lightBlue,
+        title: Text(
+          'Social Rides',
+          style: GoogleFonts.pacifico(
+            color: Colors.white
+          ),
+        ),
+        centerTitle: true,
+      ),
+      bottomNavigationBar: bottomNavigator,
+      body: Routes(index: page),
+    );
+  }
+}
+
+/*class HomePage extends StatelessWidget {
   final User? user;
 
   const HomePage({super.key, this.user});
@@ -60,4 +137,4 @@ class HomePage extends StatelessWidget {
       ),
     );
   }
-}
+}*/

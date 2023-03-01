@@ -13,6 +13,7 @@ class PostResponse {
   late final int size;
   late final bool first;
   late final int numberOfElements;
+  late final int number;
 
   PostResponse();
 
