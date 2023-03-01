@@ -133,20 +133,20 @@ class __SignInFormState extends State<_SignInForm> {
             child : Column(
               children: [
                 Padding(
-                  padding: EdgeInsets.only(top: 100 ,bottom: 30),
+                  padding: EdgeInsets.only(top: 20 ,bottom: 20),
                   child: Row(
                     children: [
                       Padding(
                         padding: EdgeInsets.only(top: 20),
                         child: Image(
                           image: NetworkImage("https://logomakercdn.truic.com/ux-flow/industry/skate-shop-meta.png"),
-                          height: MediaQuery.of(context).size.width < 1400 ? 
+                          height: MediaQuery.of(context).size.width < 1200 ? 
                           MediaQuery.of(context).size.width/5 : 200
                         ),
                       ),
                         Text('Login', style: GoogleFonts.pacifico(
                           color: Colors.black, 
-                          fontSize: MediaQuery.of(context).size.width < 1400 ? 
+                          fontSize: MediaQuery.of(context).size.width < 1200 ? 
                           MediaQuery.of(context).size.width/15 : 100
                       ),)
                     ],
